@@ -9,7 +9,7 @@ build-backend = "hatchling.build"
 
 [project]
 dynamic = ["version", "readme"]
-name = "svcs"
+name = "saucer"
 description = "A Flexible Service Locator"
 license = "MIT"
 license-files = ["LICENSE"]
