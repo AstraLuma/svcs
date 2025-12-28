@@ -1,3 +1,12 @@
+This is a fork of svcs, with the following architecture changes:
+
+* Containers are now heirarchal--child containers can inherit their parent's instances
+* Ownership is inverted--saucer owns your web app and job system, not the other way around
+* There's a default global registry and root container
+* `scr_from` (aliased as `svcs_from`) is single-dispatch, so there's one call for all integrations
+
+There's also some API changes mixed in, although basic usage compatibility is maintained (ie, you shouldn't need to rewrite every usage if you're migrating from svcs to saucer)
+
 <!-- begin logo -->
 <p align="center">
   <a href="https://github.com/hynek/svcs/">

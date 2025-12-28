@@ -898,6 +898,14 @@ class Container:
 
             container = container.parent
 
+        if self.parent is not None:
+            try:
+                cached, svc, rs = self.parent._lookup(svc_type)
+            except ServiceNotFoundError:
+                pass
+            else:
+                return cached, svc, rs
+
         if rs is None:
             rs = self.registry.get_registered_service_for(svc_type)
 
