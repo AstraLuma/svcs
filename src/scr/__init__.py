@@ -4,7 +4,7 @@
 
 from __future__ import annotations
 
-from contextlib import contextmanager
+import contextlib
 from functools import singledispatch
 
 from . import exceptions
@@ -49,25 +49,25 @@ registry: Registry = Registry()
 root: Container
 
 
-@contextmanager
+@contextlib.asynccontextmanager
 async def ainit():
     """
     Handles cleanup of the registry and root container, for async apps.
     """
     global root  # noqa: PLW0603
     async with registry:
-        root = Container()
+        root = Container(registry)
         async with root:
             yield root
 
 
-@contextmanager
+@contextlib.contextmanager
 def init():
     """
     Handles cleanup of the registry and root container, for sync apps.
     """
     global root  # noqa: PLW0603
     with registry:
-        root = Container()
+        root = Container(registry)
         with root:
             yield root
