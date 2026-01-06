@@ -34,7 +34,7 @@ svcs_from = scr_from
 
 
 @scr_from.register
-def scr_from(obj: Container) -> Container:
+def _(obj: Container) -> Container:
     return obj
 
 
