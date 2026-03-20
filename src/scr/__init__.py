@@ -55,10 +55,10 @@ async def ainit():
     Handles cleanup of the registry and root container, for async apps.
     """
     global root  # noqa: PLW0603
-    async with registry:
-        root = Container(registry)
-        async with root:
-            yield root
+    # Do not close the registry; it'll erase all the init
+    root = Container(registry)
+    async with root:
+        yield root
 
 
 @contextlib.contextmanager
@@ -67,7 +67,7 @@ def init():
     Handles cleanup of the registry and root container, for sync apps.
     """
     global root  # noqa: PLW0603
-    with registry:
-        root = Container(registry)
-        with root:
-            yield root
+    # Do not close the registry; it'll erase all the init
+    root = Container(registry)
+    with root:
+        yield root
